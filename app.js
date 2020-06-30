@@ -145,7 +145,7 @@ function moveBall() {
           ball.dy *= -1;
           brick.visible = false;
           increaseScore();
-          console.log('play sound effect');
+          
           const sound = new Audio('./sounds/brick-smash.mp3');
           sound.play();
         }
@@ -165,11 +165,10 @@ function increaseScore() {
   score++;
 
   if (score % (brickRowCount * brickRowCount) === 0) {
-    
+    showAllBricks();
+
     const sound = new Audio('./sounds/win.mp3');
     sound.play();
-
-    showAllBricks();
   }
 }
 
