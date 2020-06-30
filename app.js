@@ -110,11 +110,15 @@ function moveBall() {
   // Wall collision (right/left)
   if (ball.x + ball.size > canvas.width || ball.x - ball.size < 0) {
     ball.dx *= -1;
+    const sound = new Audio('./sounds/wall-bounce.mp3');
+    sound.play();
   }
 
   // Wall collision (top/bottom)
   if (ball.y + ball.size > canvas.height || ball.y - ball.size < 0) {
     ball.dy *= -1;
+    const sound = new Audio('./sounds/wall-bounce.mp3');
+    sound.play();
   }
 
   // Paddle collision
@@ -124,6 +128,8 @@ function moveBall() {
     ball.y + ball.size > paddle.y
   ) {
     ball.dy = -ball.speed;
+    const sound = new Audio('./sounds/paddle-bounce.mp3');
+    sound.play();
   }
 
   // Brick Collision
@@ -139,6 +145,9 @@ function moveBall() {
           ball.dy *= -1;
           brick.visible = false;
           increaseScore();
+          console.log('play sound effect');
+          const sound = new Audio('./sounds/brick-smash.mp3');
+          sound.play();
         }
       }
     });
@@ -156,6 +165,10 @@ function increaseScore() {
   score++;
 
   if (score % (brickRowCount * brickRowCount) === 0) {
+    
+    const sound = new Audio('./sounds/win.mp3');
+    sound.play();
+
     showAllBricks();
   }
 }
